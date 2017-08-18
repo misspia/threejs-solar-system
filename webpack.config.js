@@ -22,9 +22,13 @@ module.exports = {
   ],
   module: {
   	rules: [{
-	  test: /\.js$/, 
-	  exclude: /node_modules/,
-	  use: 'jshint-loader'
+  		test: /\.js$/, 
+  		exclude: /node_modules/,
+  		use: 'jshint-loader'
+  	},
+	{
+		test: /\.(glsl|vert|frag)$/,
+		loader: 'glsl-template-loader'
 	}]
   }
 };
