@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ROOT_PATH = path.resolve(__dirname);
 const OUTPUT_PATH = path.resolve(ROOT_PATH, 'dist');
 const TEMPLATE_PATH = path.resolve(ROOT_PATH, 'index.html');
-const ENTRY_PATH = path.resolve(ROOT_PATH, 'src/js/index.js');
+const ENTRY_PATH = path.resolve(ROOT_PATH, 'src/index.js');
 
 
 module.exports = {
@@ -36,6 +36,14 @@ module.exports = {
 					]
 				}
 			}
+			]
+		},
+		{
+			test: /\.scss$/,
+			use: [
+			'style-loader',
+			'css-loader',
+			'sass-loader'
 			]
 		},
 		{
