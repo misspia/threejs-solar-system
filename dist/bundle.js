@@ -74,7 +74,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shaders_test_glsl___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__shaders_test_glsl__);
 
 
-console.log('sup world', Object(__WEBPACK_IMPORTED_MODULE_0__test_js__["a" /* default */])());
+console.log('sup world!!!', Object(__WEBPACK_IMPORTED_MODULE_0__test_js__["a" /* default */])());
 console.log('test shader', __WEBPACK_IMPORTED_MODULE_1__shaders_test_glsl___default.a);
 
 
@@ -83,8 +83,11 @@ console.log('test shader', __WEBPACK_IMPORTED_MODULE_1__shaders_test_glsl___defa
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-function test() {
-	return "testing ~~~";
+// function test() {
+// 	return "testing ~!~!~";
+// }
+const test = () => {
+	return "testing ~!~!~~~~";
 }
 /* harmony default export */ __webpack_exports__["a"] = (test);
 
