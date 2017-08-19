@@ -8,27 +8,39 @@ const ENTRY_PATH = path.resolve(ROOT_PATH, 'src/js/index.js');
 
 
 module.exports = {
-  entry: ENTRY_PATH,
-  output: {
-	filename: 'bundle.js',
-	path: OUTPUT_PATH
-  },
-  plugins: [
+	context: path.resolve(__dirname, 'src'),
+	entry: ENTRY_PATH,
+	output: {
+		filename: 'bundle.js',
+		path: OUTPUT_PATH,
+		publicPath: 'dist/'
+	},
+	plugins: [
 	new HtmlWebpackPlugin({
-      title: 'Luminous',
-      filename: TEMPLATE_PATH,
-      inject: 'body'
-    })
-  ],
-  module: {
-  	rules: [{
-  		test: /\.js$/, 
-  		exclude: /node_modules/,
-  		use: 'jshint-loader'
-  	},
-	{
-		test: /\.(glsl|vert|frag)$/,
-		loader: 'glsl-template-loader'
-	}]
-  }
+		title: 'Luminous',
+		filename: TEMPLATE_PATH,
+		inject: 'body'
+	})
+	],
+	module: {
+		rules: [{
+			test: /\.js$/, 
+			exclude: /node_modules/,
+			use: [
+			'jshint-loader',
+			{
+				loader: 'babel-loader',
+				options: {
+					presets: [
+					['es2015', { modules: false }]
+					]
+				}
+			}
+			]
+		},
+		{
+			test: /\.(glsl|vert|frag)$/,
+			loader: 'glsl-template-loader'
+		}]
+	}
 };
