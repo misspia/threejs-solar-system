@@ -5,8 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "webpack-dev-server --inline",
-    "build": "webpack -p",
-    "dev": "webpack --watch"
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
