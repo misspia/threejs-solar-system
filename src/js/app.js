@@ -72,8 +72,10 @@ const init = {
 
 	},
 	shaders: () => {
-		const fragmentShader = createShader(gl.FRAGMENT_SHADER, testFrag);
-		const vertexShader= createShader(gl.VERTEX_SHADER, testVert);
+		// const fragmentShader = createShader(gl.FRAGMENT_SHADER, testFrag);
+		// const vertexShader= createShader(gl.VERTEX_SHADER, testVert);
+		const fragmentShader = testFrag;
+		const vertexShader = testVert;
 		console.log(fragmentShader, vertexShader);
 		
 		shaderProgram = gl.createProgram();
