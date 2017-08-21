@@ -33,5 +33,7 @@
     "webpack-dev-server": "^2.2.0-rc.0",
     "webpack-glsl-loader": "^1.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gl-matrix": "^2.4.0"
+  }
 }
