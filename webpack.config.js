@@ -32,7 +32,7 @@ module.exports = {
 				loader: 'babel-loader',
 				options: {
 					presets: [
-					['es2015', { modules: false }]
+						['es2015', { modules: false }]
 					]
 				}
 			}
@@ -41,17 +41,27 @@ module.exports = {
 		{
 			test: /\.scss$/,
 			use: [
-			'style-loader',
-			'css-loader',
-			'sass-loader'
+				'style-loader',
+				'css-loader',
+				'sass-loader'
 			]
 		},
-		{ test: /\.(glsl|frag|vert)$/, loader: 'raw-loader', exclude: /node_modules/ },
-		 { test: /\.(glsl|frag|vert)$/, loader: 'glslify-loader', exclude: /node_modules/ }
-		// {
-		// 	test: /\.(glsl|vert|frag)$/,
-		// 	loader: 'webpack-glsl-loader'
-		// }
+		// { test: /\.(glsl|frag|vert)$/, loader: 'raw-loader', exclude: /node_modules/ },
+		//  { test: /\.(glsl|frag|vert)$/, loader: 'glslify-loader', exclude: /node_modules/ }
+		{
+			test: /\.(glsl|vert|frag)$/,
+			loader: 'webpack-glsl-loader'
+		}
 		]
 	}
 };
+
+
+// test: /\.(glsl|vert|frag)$/,
+
+
+
+
+
+
+
