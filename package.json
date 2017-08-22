@@ -5,8 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "webpack-dev-server --inline",
-    "build": "webpack -p",
-    "dev": "webpack --watch"
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -34,5 +33,7 @@
     "webpack-dev-server": "^2.2.0-rc.0",
     "webpack-glsl-loader": "^1.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gl-matrix": "^2.4.0"
+  }
 }
