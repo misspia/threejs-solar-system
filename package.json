@@ -34,6 +34,7 @@
     "webpack-glsl-loader": "^1.0.1"
   },
   "dependencies": {
-    "gl-matrix": "^2.4.0"
+    "gl-matrix": "^2.4.0",
+    "three": "^0.87.1"
   }
 }
