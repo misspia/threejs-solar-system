@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import OrbitControls from 'three-orbit-controls';
+
+const OrbitController = OrbitControls(THREE);
 
 const entryElement = document.body;
 const canvas = document.getElementById('canvas');
@@ -8,7 +11,6 @@ const aspectRatio = viewport.width / viewport.height;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, aspectRatio, 0.1, 1000);
-
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( viewport.width, viewport.height );
@@ -22,6 +24,7 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix();
 })
 
+const controls = new OrbitController(camera, renderer.domElement);
 
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 const material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
