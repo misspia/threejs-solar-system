@@ -32,6 +32,11 @@ const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 camera.position.z = 3;
 
+// doesnt with mesh, must use meshlambert, phong, basic, etc
+const ambientLight = new THREE.AmbientLight( 0xFFFFFF, 5.0);
+scene.add( ambientLight );
+
+
 const update = () => {
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.005;
