@@ -16,7 +16,7 @@ window.addEventListener( 'resize', () => {
   const height = window.innerHeight;
   renderer.setSize( width, height );
   camera.aspect = width / height;
-  camera.updateProjectionMatrix;
+  camera.updateProjectionMatrix();
 })
 
 const scene = new THREE.Scene();
