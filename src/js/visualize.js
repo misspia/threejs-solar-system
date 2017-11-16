@@ -5,7 +5,7 @@ function Visualize(scene) {
   const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
   const cube = new THREE.Mesh( geometry, material );
   scene.add(cube);
-  this.update = () => {
+  this.draw = () => {
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.005;
   }
