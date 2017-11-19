@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 import WindowEvents from './js/windowEvents.js';
 import './scss/main.scss';
-import Visualize from './js/visualize.js';
+import Sphere from './js/sphere.js';
 
 const entryElement = document.body;
 const viewport = { height: window.innerHeight, width: window.innerWidth };
@@ -23,10 +23,11 @@ const render = () => {
   renderer.render( scene, camera );
 }
 
-const cube = new Visualize(scene);
+const orb = new Sphere(scene);
+orb.add();
 const animate = () => {
   requestAnimationFrame( animate );
-  cube.draw();
+  orb.draw();
   render();
 }
 
