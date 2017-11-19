@@ -1,8 +1,8 @@
 // http://maplestory.nexon.net/game/classes-and-jobs/2892/luminous
 import * as THREE from 'three';
-import WindowEvents from './js/windowEvents.js';
+import WindowEvents from './components/windowEvents.js';
 import './scss/main.scss';
-import Sphere from './js/sphere.js';
+import Sphere from './geometries/sphere.js';
 
 const entryElement = document.body;
 const viewport = { height: window.innerHeight, width: window.innerWidth };
