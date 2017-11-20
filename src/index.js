@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import WindowEvents from './components/windowEvents.js';
 import './scss/main.scss';
 import Sphere from './geometries/sphere.js';
+import GlowFragShader from './shaders/glow.frag';
 
 const entryElement = document.body;
 const viewport = { height: window.innerHeight, width: window.innerWidth };
@@ -23,7 +24,7 @@ const render = () => {
   renderer.render( scene, camera );
 }
 
-const orb = new Sphere(scene);
+const orb = new Sphere(scene, GlowFragShader);
 orb.add();
 const animate = () => {
   requestAnimationFrame( animate );
