@@ -24,10 +24,21 @@ const render = () => {
   renderer.render( scene, camera );
 }
 
-const orb = new Sphere(scene, GlowFragShader);
+
+const orbShader = {
+    fragmentShader: GlowFragShader,
+    uniforms: {
+        time: { type: 'f', value: 1.0 }
+    }
+};
+const startTime = Date.now();
+const orb = new Sphere(scene, orbShader);
 orb.add();
 const animate = () => {
   requestAnimationFrame( animate );
+  const elapsedMilliseconds = Date.now() - startTime;
+  const elapsedSeconds = elapsedMilliseconds / 1000;
+  orbShader.uniforms.time.value = 60 * elapsedSeconds;
   orb.draw();
   render();
 }

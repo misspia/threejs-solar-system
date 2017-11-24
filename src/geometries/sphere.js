@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 
-function Sphere(scene, fragmentShader, radius=1,) {
+function Sphere(scene, shader, radius=1,) {
   this.geometry = new THREE.SphereGeometry(radius, 15, 15);
   // this.material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
-  this.material = new THREE.ShaderMaterial({ fragmentShader });
+  this.material = new THREE.ShaderMaterial(shader);
   this.cube = new THREE.Mesh( this.geometry, this.material );
   this.add = () => {
     scene.add(this.cube);
