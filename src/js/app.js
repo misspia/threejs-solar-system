@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import OrbitControls from 'three-orbit-controls';
 import SceneManager from './sceneManager.js';
-import Draw from './draw.js';
+import Planet from './planets/planet.js';
 const OrbitController = OrbitControls(THREE);
 
 const entryElement = document.getElementById('app');
@@ -11,19 +11,20 @@ entryElement.width = window.innerWidth;
 const app = new SceneManager(entryElement);
 app.constructScene();
 app.initWindowResizeHandler();
+app.cameraPosition = {z: 5};
+app.addPointLight({x: 200, y: 200, z: 400});
+const controls = new OrbitController(app.camera, app.renderer.domElement);
 
 entryElement.appendChild(app.renderer.domElement);
-const controls = new OrbitController(app.camera, app.renderer.domElement);
-app.cameraPosition = {z: 3};
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
-const cube = new THREE.Mesh( geometry, material );
-app.add(cube);
+const planet = new Planet();
+planet.initBase({color: 0x37BE95, radius: 1, detail: 1});
+
+app.add(planet.base)
 
 const update = () => {
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.005;
+  planet.rotation = {axis: 'x', scalar: 0.01};
+  planet.rotation = {axis: 'y', scalar: 0.005};
 }
 
 const GameLoop = ()  => {

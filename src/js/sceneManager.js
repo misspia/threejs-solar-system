@@ -7,6 +7,7 @@ class SceneManager {
     this.scene = {};
     this.camera = {};
     this.renderer = {};
+    this.light = {};
   }
   constructScene() {
     this.initScene();
@@ -28,6 +29,11 @@ class SceneManager {
     const { width, height } = this.dimmensions;
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(width, height);
+  }
+  addPointLight({x, y, z}) {
+    this.light = new THREE.PointLight();
+    this.light.position.set(x, y, z);
+    this.add(this.light);
   }
   initWindowResizeHandler() {
     const width = window.innerWidth;
