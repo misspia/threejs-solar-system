@@ -1,0 +1,85 @@
+// https://pds.jpl.nasa.gov/planets/special/planets.htm
+
+// radius: km
+// orbitRadius: avg distance form sun (AU)
+// orbitAngle: plane inclination
+// orbitSpeed: length of year Earth year (days)
+// rotateSpeed: length of day in Earth days
+// obliquity: axis tilt (degrees)
+
+// const AU = ;
+const Metadata = {
+  sun: {
+
+  },
+  mercury: {
+    radius: 4879.4 / 2,
+    orbitRadius: 0.387,
+    orbitAngle: 7,
+    orbitSpeed: 87.97,
+    rotateSpeed: 58.65,
+    obliquity: 0
+  },
+  venus: {
+    radius: 12104 / 2,
+    orbitRadius: 0.723,
+    orbitAngle: 3.39,
+    orbitSpeed: 224.7,
+    rotateSpeed: 243.02,
+    obliquity: 1.78
+  },
+  earth: {
+    radius: 12756 / 2,
+    orbitRadius: 1,
+    orbitAngle: 0,
+    orbitSpeed: 365.26,
+    rotateSpeed: 1,
+    obliquity: 23.4
+  },
+  mars: {
+    radius: 6787 / 2,
+    orbitRadius: 1.524,
+    orbitAngle: 1.85,
+    orbitSpeed: 686.98,
+    rotateSpeed: 1.026,
+    obliquity: 25
+  },
+  jupiter: {
+    radius: 142800 / 2,
+    orbitRadius: 5.203,
+    orbitAngle: 1.3,
+    orbitSpeed: 11.86,
+    rotateSpeed: 0.41,
+    obliquity: 3.08
+  },
+  saturn: {
+    radius: 120660 / 2,
+    ringRadiusStart: 66900, //https://en.wikipedia.org/wiki/Rings_of_Saturn#Major_subdivisions
+    ringRadiusEnd: 1300000,
+    orbitRadius: 9.537,
+    orbitAngle: 2.49,
+    orbitSpeed: 29.46,
+    rotateSpeed: 0.44,
+    obliquity: 26.7
+  },
+  uranus: {
+    radius: 51118 / 2,
+    ringRadiusStart: 26840, //https://en.wikipedia.org/wiki/Rings_of_Uranus#List_of_properties
+    ringRadiusEnd: 103000,
+    orbitRadius: 19.19,
+    orbitAngle: 0.77,
+    orbitSpeed: 30.685,
+    rotateSpeed: 0.72,
+    obliquity: 97.9
+  },
+  neptune: {
+    radius: 49528 / 2,
+    ringRadiusStart: 40900, // https://en.wikipedia.org/wiki/Rings_of_Neptune#Properties
+    ringRadiusEnd: 62932,
+    orbitRadius: 30.07,
+    orbitAngle: 1.77,
+    orbitSpeed: 60190,
+    rotateSpeed: 0.67,
+    obliquity: 29.6
+  },
+}
