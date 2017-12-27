@@ -7,7 +7,11 @@ class SceneManager {
     this.scene = {};
     this.camera = {};
     this.renderer = {};
-    this.light = {};
+    this.light = {
+      point: {},
+      ambient: {},
+      directional: {}
+    };
   }
   constructScene() {
     this.initScene();
@@ -30,10 +34,19 @@ class SceneManager {
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(width, height);
   }
-  addPointLight({x, y, z}) {
-    this.light = new THREE.PointLight();
-    this.light.position.set(x, y, z);
-    this.add(this.light);
+  addPointLight({x, y, z, color, intensity, distance, decay}) {
+    this.light.point = new THREE.PointLight(color, intensity, distance, decay);
+    this.light.point.position.set(x, y, z);
+    this.add(this.light.point);
+  }
+  addAmbientLight(color, intensity) {
+    this.light.ambient = new THREE.AmbientLight(color, intensity);
+    this.add(this.light.ambient);
+  }
+  addDirectionalLight({x, y, z}) {
+    this.light.directional = new THREE.DirectionalLight();
+    this.light.directional.position.set(x, y, z);
+    this.add(this.light.directional);
   }
   initWindowResizeHandler() {
     const width = window.innerWidth;

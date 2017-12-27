@@ -15,11 +15,12 @@ app.constructScene();
 app.initWindowResizeHandler();
 app.cameraPosition = {z: 5};
 app.addPointLight({x: 200, y: 200, z: 400});
+app.addAmbientLight();
 const controls = new OrbitController(app.camera, app.renderer.domElement);
 
 entryElement.appendChild(app.renderer.domElement);
 
-app.add(Saturn.base);
+app.add(Saturn.body);
 
 const update = () => {
   Saturn.rotation = {axis: 'x', scalar: 0.01};
