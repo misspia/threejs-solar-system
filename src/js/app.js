@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import OrbitControls from 'three-orbit-controls';
 import SceneManager from './sceneManager.js';
 import Planet from './planets/planet.js';
+import Saturn from './planets/saturn.js';
+ console.log('saturn', Saturn);
 const OrbitController = OrbitControls(THREE);
 
 const entryElement = document.getElementById('app');
@@ -17,14 +19,11 @@ const controls = new OrbitController(app.camera, app.renderer.domElement);
 
 entryElement.appendChild(app.renderer.domElement);
 
-const planet = new Planet();
-planet.initBase({color: 0x37BE95, radius: 1, detail: 1});
-
-app.add(planet.base)
+app.add(Saturn.base);
 
 const update = () => {
-  planet.rotation = {axis: 'x', scalar: 0.01};
-  planet.rotation = {axis: 'y', scalar: 0.005};
+  Saturn.rotation = {axis: 'x', scalar: 0.01};
+  Saturn.rotation = {axis: 'y', scalar: 0.005};
 }
 
 const GameLoop = ()  => {
