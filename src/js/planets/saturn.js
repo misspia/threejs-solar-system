@@ -1,8 +1,25 @@
 import Planet from './planet.js';
 import { saturn as metadata } from '../solarSystem.metadata.js';
 
-const saturn = new Planet;
-saturn.addBase({color: metadata.color, radius: 1, detail: 1});
-saturn.addRing({color: metadata.ringColor, radius: 1.3, tube: 0.15, radialSegments: 6, tubularSegments: 15});
+const Saturn = new Planet;
 
-export default saturn;
+const base = {
+    color: metadata.color,
+    radius: metadata.radius,
+    detail: 1
+};
+
+const ring = {
+  color: metadata.color,
+  radius: metadata.ringRadius,
+  tube: 0.3,
+  // tube: metadata.ringThickness,
+  radialSegments: 5,
+  tubularSegments: 12
+};
+
+Saturn.addBase(base);
+Saturn.addRing(ring);
+Saturn.tilt = {axis: 'x', radians: metadata.obliquity};
+
+export default Saturn;

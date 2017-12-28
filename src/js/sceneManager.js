@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import OrbitControls from 'three-orbit-controls';
+
+const OrbitController = OrbitControls(THREE);
 
 class SceneManager {
   constructor(canvas) {
@@ -12,6 +15,7 @@ class SceneManager {
       ambient: {},
       directional: {}
     };
+    this.controls = {};
   }
   constructScene() {
     this.initScene();
@@ -48,10 +52,13 @@ class SceneManager {
     this.light.directional.position.set(x, y, z);
     this.add(this.light.directional);
   }
+  addOrbitControls() {
+    this.controls = new OrbitController(this.camera, this.renderer.domElement);
+  }
   initWindowResizeHandler() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
     window.addEventListener( 'resize', () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
       this.renderer.setSize( width, height );
       this.camera.aspect = width /height;
       this.camera.updateProjectionMatrix();
