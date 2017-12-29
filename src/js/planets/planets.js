@@ -2,7 +2,7 @@ import mercury from './mercury.js';
 import venus from './venus.js';
 // import earth from './earth.js';
 import mars from './mars.js';
-// import jupiter from './jupiter.js';
+import jupiter from './jupiter.js';
 import saturn from './saturn.js';
 // import uranus from './uranus.js';
 // import neptune from './neptune.js';
@@ -12,7 +12,7 @@ const Planets = {
   venus,
   // earth,
   mars,
-  // jupiter,
+  jupiter,
   saturn,
   // uranus,
   // neptune,
