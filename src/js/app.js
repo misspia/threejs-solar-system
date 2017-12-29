@@ -18,7 +18,7 @@ entryElement.appendChild(app.renderer.domElement);
 
 const timeFactor = 1;
 const SS = new SolarSystem(app);
-SS.addPlanets();
+SS.addAllBodies();
 SS.timeFactor = 40;
 
 const GameLoop = ()  => {

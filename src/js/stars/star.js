@@ -4,11 +4,10 @@ import CelestialBody from '../celestialBody.js';
 class Star extends CelestialBody {
   constructor() {
     super();
-    this.base = {};
+    this.glow = {};
   }
-  testMethod() {
-    // console.log('i is celeste bod', this.testvar)
-    this.base = { test: ''}
+  addGlow() {
+
   }
 }
 
