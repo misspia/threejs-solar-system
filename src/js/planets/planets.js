@@ -5,7 +5,7 @@ import mars from './mars.js';
 import jupiter from './jupiter.js';
 import saturn from './saturn.js';
 import uranus from './uranus.js';
-// import neptune from './neptune.js';
+import neptune from './neptune.js';
 
 const Planets = {
   mercury,
@@ -15,7 +15,7 @@ const Planets = {
   jupiter,
   saturn,
   uranus,
-  // neptune,
+  neptune,
 };
 
 export default Planets;
