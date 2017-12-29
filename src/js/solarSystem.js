@@ -1,9 +1,11 @@
 import * as metadata from './solarSystem.metadata.js';
 import Planets from './planets/planets.js';
+import Stars from './stars/stars.js';
 
 class SolarSystem {
     constructor(app) {
       this.app = app;
+      this.pivot = {};
       this.timeFactor = 0;
       this.orbitAngle = {
         mercury: 0,
@@ -16,10 +18,24 @@ class SolarSystem {
         neptune: 0
       };
     }
-    addPlanets() {
+    add(body, destination='pivot') {
+      this[destination].add(body);
+    }
+    assignPivot(body) {
+      this.pivot = body;
+      this.add(body, 'app');
+    }
+    addAllBodies() {
+      this.assignPivot(Stars.sun.body)
+      this.addAllPlanets();
+    }
+    addAllPlanets() {
       Object.keys(Planets).forEach(planet => {
-        this.app.add(Planets[planet].body);
+        this.add(Planets[planet].body);
       });
+    }
+    addStars() {
+
     }
     updateAllOrbitAngles() {
       Object.keys(this.orbitAngle).forEach((planet, index) => {
@@ -36,10 +52,18 @@ class SolarSystem {
         Planets[planet].position = {axis: 'z', scalar: z};
       });
     }
+    updateAllPlanetaryRotations() {
+      Object.keys(Planets).forEach(planet => {
+        Planets[planet].rotation = {
+          axis: 'y',
+          radians: metadata[planet].rotationSpeed
+        }
+      })
+    }
     draw() {
-      Planets.saturn.rotation = {axis: 'y', radians: metadata.saturn.rotationSpeed};
       this.updateAllOrbitAngles();
       this.updateAllOrbitPositions();
+      this.updateAllPlanetaryRotations();
     }
 }
 

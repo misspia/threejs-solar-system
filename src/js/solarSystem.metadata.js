@@ -1,4 +1,5 @@
 // https://pds.jpl.nasa.gov/planets/special/planets.htm
+// https://stackoverflow.com/questions/11363170/units-of-three-js-calculating-rotation-orbit-speeds
 
 // original units
 // distance from sun: AU
