@@ -137,7 +137,7 @@ export const earth = {
   orbitSpeed: calc.orbitSpeed(data.earth.orbitPeriod),
   rotationSpeed: calc.orbitSpeed(data.earth.rotationPeriod),
   obliquity: calc.radians(data.earth.obliquity),
-  color: 0xc3eee7, // 0x4f4cb0  0x6b93d6
+  color: 0x6b93d6, // 0x4f4cb0  0x6b93d6  0xc3eee7
   landColor: 0x9fc164,
 };
 
