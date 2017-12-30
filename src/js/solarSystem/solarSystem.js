@@ -17,6 +17,20 @@ class SolarSystem {
         uranus: 0,
         neptune: 0
       };
+      this.bodies = {
+        stars: Stars,
+        planets: Planets
+      }
+    }
+    lookAt(name) {
+      const body = this.app.scene.getObjectByName(name);
+      if(!body) {
+        const defaultPosition = this.app.defaultCameraPosition;
+        this.app.camera.lookAt(defaultPosition);
+      } else {
+        const position = body.getWorldPosition();
+        this.app.camera.lookAt(position);
+      }
     }
     add(body, destination='pivot') {
       this[destination].add(body);

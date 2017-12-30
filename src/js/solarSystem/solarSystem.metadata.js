@@ -106,11 +106,13 @@ const data = {
 }
 
 export const sun = {
+  label: 'sun',
   radius: calc.gameDistance(data.sun.radius),
   color: 0xff691c, // 0xf1bf62  0xff850c
 };
 
 export const mercury = {
+  label: 'mercury',
   radius: calc.gameDistance(data.mercury.radius),
   orbitRadius: calc.orbitRadius(sun.radius, data.mercury.distanceFromSun),
   orbitInclination: calc.radians(data.mercury.orbitInclination),
@@ -121,6 +123,7 @@ export const mercury = {
 };
 
 export const venus = {
+  label: 'venus',
   radius: calc.gameDistance(data.venus.radius),
   orbitRadius: calc.orbitRadius(sun.radius, data.venus.distanceFromSun),
   orbitInclination: calc.radians(data.venus.orbitInclination),
@@ -131,6 +134,7 @@ export const venus = {
 };
 
 export const earth = {
+  label: 'earth',
   radius: calc.gameDistance(data.earth.radius),
   orbitRadius: calc.orbitRadius(sun.radius, data.earth.distanceFromSun),
   orbitInclination: calc.radians(data.earth.orbitInclination),
@@ -142,6 +146,7 @@ export const earth = {
 };
 
 export const mars = {
+  label: 'mars',
   radius: calc.gameDistance(data.mars.radius),
   orbitRadius: calc.orbitRadius(sun.radius, data.mars.distanceFromSun),
   orbitInclination: calc.radians(data.mars.orbitInclination),
@@ -152,6 +157,7 @@ export const mars = {
 };
 
 export const jupiter = {
+  label: 'jupiter',
   radius: calc.gameDistance(data.jupiter.radius),
   orbitRadius: calc.orbitRadius(sun.radius, data.jupiter.distanceFromSun),
   orbitInclination: calc.radians(data.jupiter.orbitInclination),
@@ -162,6 +168,7 @@ export const jupiter = {
 };
 
 export const saturn = {
+  label: 'saturn',
   radius: calc.gameDistance(data.saturn.radius),
   ringRadius: calc.gameDistance(data.saturn.ringRadiusStart),
   ringThickness: calc.gameDistance(data.saturn.ringRadiusEnd - data.saturn.ringRadiusStart),
@@ -175,6 +182,7 @@ export const saturn = {
 };
 
 export const uranus = {
+  label: 'uranus',
   radius: calc.gameDistance(data.uranus.radius),
   ringRadius: calc.gameDistance(data.uranus.ringRadiusStart),
   ringThickness: calc.gameDistance(data.uranus.ringRadiusEnd - data.uranus.ringRadiusStart),
@@ -188,6 +196,7 @@ export const uranus = {
 };
 
 export const neptune = {
+  label: 'neptune',
   radius: calc.gameDistance(data.neptune.radius),
   ringRadius: calc.gameDistance(data.neptune.ringRadiusStart),
   ringThickness: calc.gameDistance(data.neptune.ringRadiusEnd - data.neptune.ringRadiusStart),
