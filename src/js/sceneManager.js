@@ -9,6 +9,7 @@ class SceneManager {
     this.clock = new THREE.Clock();
     this.scene = {};
     this.camera = {};
+    this.defaultCameraPosition = {x: 0, y: 0, z: 60};
     this.renderer = {};
     this.light = {
       point: {},
@@ -70,6 +71,11 @@ class SceneManager {
   add(obj) {
     this.scene.add( obj );
   }
+  // set defaultCameraPosition(coords) {
+  //   for(let axis in coords) {
+  //     this.defaultCameraPosition[axis] = coords[axis];
+  //   }
+  // }
   set cameraPosition(coords) { //x, y, z
     for(let axis in coords) {
       this.camera.position[axis] = coords[axis];

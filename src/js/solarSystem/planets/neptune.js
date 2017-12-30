@@ -1,7 +1,7 @@
 import Planet from './planet.js';
-import { uranus as metadata } from '../solarSystem.metadata.js';
+import { neptune as metadata } from '../solarSystem.metadata.js';
 
-const Uranus = new Planet;
+const Neptune = new Planet(metadata.label);
 
 const base = {
     color: metadata.color,
@@ -18,8 +18,8 @@ const ring = {
   tubularSegments: 12
 };
 
-Uranus.addBase(base);
-Uranus.addRing(ring);
-Uranus.tilt = {axis: 'x', radians: metadata.obliquity};
+Neptune.addBase(base);
+Neptune.addRing(ring);
+Neptune.tilt = {axis: 'x', radians: metadata.obliquity};
 
-export default Uranus;
+export default Neptune;

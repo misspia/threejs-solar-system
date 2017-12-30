@@ -4,8 +4,8 @@ import CelestialBody from '../celestialBody.js';
 const radians90Degrees = 90 * Math.PI / 180;
 
 class Planet extends CelestialBody {
-  constructor() {
-    super();
+  constructor(name) {
+    super(name);
     this.ring = {};
     this.fog = {};
   }

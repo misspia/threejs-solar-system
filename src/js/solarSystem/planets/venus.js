@@ -1,7 +1,7 @@
 import Planet from './planet.js';
 import { venus as metadata } from '../solarSystem.metadata.js';
 
-const Venus = new Planet;
+const Venus = new Planet(metadata.label);
 
 const base = {
     color: metadata.color,

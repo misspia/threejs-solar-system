@@ -1,8 +1,9 @@
 import * as THREE from 'three';
 
 class CelestialBody {
-  constructor() {
+  constructor(name) {
     this.body = new THREE.Group();
+    this.body.name = name;
     this.base = {};
   }
   add(part) {
