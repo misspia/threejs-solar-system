@@ -2,9 +2,8 @@ import $ from 'jquery';
 import * as THREE from 'three'
 import SceneManager from './sceneManager.js';
 import SolarSystem from './solarSystem/solarSystem.js';
-import Focuser from './controls/focuser.js';
+import Profile from './profile/profile.js';
 
-const controlsElement = $('#focusControls');
 const ssElement = $('#solarSystem');
 ssElement.height = window.innerHeight;
 ssElement.width = window.innerWidth;
@@ -23,12 +22,21 @@ const SS = new SolarSystem(app);
 SS.addAllBodies();
 SS.timeFactor = 40;
 
-const FocusControls = new Focuser(controlsElement, SS);
-FocusControls.init();
+const profileContainer = $('#planetProfile .profile');
+const menuContainer = $('#planetProfile .menu');
+const ProfileView = new Profile(profileContainer, menuContainer);
+ProfileView.render();
+
+const profileParentContainer = $('#planetProfile');
+const toggleElement = $('#controls .profileToggler');
+toggleElement.click(() => {
+  $(this).toggleClass('active');
+  profileParentContainer.toggleClass('active');
+});
 
 const GameLoop = ()  => {
   requestAnimationFrame(GameLoop);
-  SS.draw();
+  SS.render();
   app.render();
 }
 
