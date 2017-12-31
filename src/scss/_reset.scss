@@ -1,0 +1,10 @@
+body {
+  position: relative;
+	margin: 0;
+  button{
+    cursor: pointer;
+    &:active, &:focus {
+      outline: none;
+    }
+  }
+}

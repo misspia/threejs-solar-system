@@ -1,1 +1,15 @@
-$bg: pink;
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
+
+$bodyFontFamily:  'Inconsolata', monospace;
+$textFadeAlpha: 0.6;
+$bgFadeAlpha: 0.3;
+$defaultTransitionTime: 0.3s;
+$topOffset: 4em;
+$containerPad: 0.5em;
+
+
+$bg: #10161d;
+$grey: #b6b8ba;
+$blue: #58bccc;
+$orange: #d2833c;
+$red: #b14727;

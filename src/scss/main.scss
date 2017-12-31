@@ -1,23 +1,83 @@
 @import './variables.scss';
+@import './reset.scss';
 
 body {
-	margin: 0;
 	height: 100vh;
 	width: 100vw;
-	margin: 0;
-	background-color: pink;
 	overflow: hidden;
+	font-family: $bodyFontFamily;
+	font-size: 1em;
+	background-color: $bg;
+	color: $blue;
 }
-
-#solarSystem, #focusControls {
+#controls {
+	position: fixed;
+}
+#solarSystem, #planetProfile {
 	position: absolute;
 }
-
-#focusControls {
-	width: 500px;
+#controls {
+	z-index: 2;
+	padding: $containerPad;
+	box-sizing: border-box;
+	width: 100%;
+	height: $topOffset;
+	display: flex;
+	justify-content: flex-end;
+	background-color: transparent;
+	&>* {
+		height: 100%;
+	}
+	.profileToggler {
+		font-size: 100%;
+		background-color: transparent;
+		border: none;
+		color: rgba($orange, $textFadeAlpha);
+		transition: all $defaultTransitionTime;
+		&:hover {
+			color: $orange;
+		}
+	}
+}
+#planetProfile {
+	padding: $containerPad;
+	padding-top: $topOffset;
+	display: none;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
 	z-index: 1;
-	background-color: red;
-	button {
+	background-color: rgba($bg, $bgFadeAlpha);
+	&.active {
+		display: flex;
+	}
+	.profile {
+		flex: 2;
+	}
+	.menu {
+		flex: 1;
+	}
+	.profile {
+		.title {
+			font-size: 1.1em;
+		}
+	}
+	.menu {
+		display: flex;
+		flex-direction: column;
+		button {
+			background-color: rgba($blue, $bgFadeAlpha);
+			padding: 1em;
+			margin: 0.1em 0;
+			text-transform: uppercase;
+			border: solid 1px $blue;
+			color: $blue;
 			cursor: pointer;
+			transition: all $defaultTransitionTime;
+			&:hover {
+				background-color: $blue;
+				color: $bg;
+			}
+		}
 	}
 }
