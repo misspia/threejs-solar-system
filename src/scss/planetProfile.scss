@@ -1,0 +1,57 @@
+#planetProfile {
+	padding: $containerPad;
+	padding-top: $topOffset;
+	display: none;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	z-index: 1;
+	background-color: rgba($bg, $bgFadeAlpha);
+	&.active {
+		display: flex;
+	}
+	.profile {
+		flex: 2;
+	}
+	.menu {
+		flex: 1;
+	}
+	.profile {
+		.title {
+			font-size: 1.1em;
+		}
+	}
+	.menu {
+		display: flex;
+		flex-direction: column;
+		perspective: 30em;
+
+		button {
+			background-color: rgba($blue, $bgFadeAlpha);
+			padding: 1em;
+			margin: 0.1em 0;
+			text-transform: uppercase;
+			border: solid 1px $blue;
+			color: $blue;
+			cursor: pointer;
+			transition: all $defaultTransitionTime;
+			&:hover {
+				background-color: $blue;
+				color: $bg;
+			}
+		}
+	}
+	.menu, .menu button {
+		transform-style: preserve-3d;
+		perspective: 35em;
+	}
+	.menu {
+		transform: translateX(-40px) rotateZ(5deg);
+		button {
+			transform: rotateY(-20deg);
+			&:hover {
+				transform: translate(-10px, -10px) rotateY(-20deg);
+			}
+		}
+	}
+}

@@ -1,0 +1,23 @@
+#controls {
+	z-index: 2;
+	padding: $containerPad;
+	box-sizing: border-box;
+	width: 100%;
+	height: $topOffset;
+	display: flex;
+	justify-content: flex-end;
+	background-color: transparent;
+	&>* {
+		height: 100%;
+	}
+	.profileToggler {
+		font-size: 100%;
+		background-color: transparent;
+		border: none;
+		color: rgba($orange, $textFadeAlpha);
+		transition: all $defaultTransitionTime;
+		&:hover {
+			color: $orange;
+		}
+	}
+}
