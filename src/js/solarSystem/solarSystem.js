@@ -76,8 +76,8 @@ class SolarSystem {
     }
     render() {
       this.updateAllOrbitAngles();
-      this.updateAllOrbitPositions();
       this.updateAllPlanetaryRotations();
+      this.updateAllOrbitPositions();
     }
 }
 

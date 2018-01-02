@@ -51,5 +51,6 @@ module.exports = {
 			loader: 'webpack-glsl-loader'
 		}
 		]
-	}
+	},
+	devtool: 'source-map'
 };

@@ -5,7 +5,8 @@ const OrbitController = OrbitControls(THREE);
 
 class SceneManager {
   constructor(canvas) {
-    this.dimmensions = { width: canvas.width, height: canvas.height };
+    this.canvas = canvas;
+    this.dimmensions = { width: canvas.width(), height: canvas.height() };
     this.clock = new THREE.Clock();
     this.scene = {};
     this.camera = {};
@@ -57,13 +58,19 @@ class SceneManager {
     this.controls = new OrbitController(this.camera, this.renderer.domElement);
   }
   initWindowResizeHandler() {
-    window.addEventListener( 'resize', () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      this.renderer.setSize( width, height );
-      this.camera.aspect = width /height;
-      this.camera.updateProjectionMatrix();
-    })
+    window.addEventListener( 'resize', () => this.resizeHandler());
+  }
+  removeWindowResizeHander() {
+    window.removeEventListener('resize', () => this.resizeHandler());
+  }
+  resizeHandler() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    // const width = this.canvas.width();
+    // const height = this.canvas.height();
+    this.renderer.setSize( width, height );
+    this.camera.aspect = width /height;
+    this.camera.updateProjectionMatrix();
   }
   render() {
     this.renderer.render( this.scene, this.camera );
@@ -71,15 +78,16 @@ class SceneManager {
   add(obj) {
     this.scene.add( obj );
   }
-  // set defaultCameraPosition(coords) {
-  //   for(let axis in coords) {
-  //     this.defaultCameraPosition[axis] = coords[axis];
-  //   }
-  // }
   set cameraPosition(coords) { //x, y, z
     for(let axis in coords) {
       this.camera.position[axis] = coords[axis];
     }
+  }
+  set height(height) {
+    this.renderer.height = height;
+  }
+  set width(width) {
+    this.renderer.width = width;
   }
 }
 
