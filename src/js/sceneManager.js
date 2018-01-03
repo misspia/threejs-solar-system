@@ -27,6 +27,11 @@ class SceneManager {
   initScene() {
     this.scene = new THREE.Scene();
   }
+  clearScene() {
+    while(this.scene.children.length) {
+      this.scene.remove(this.scene.children[0]);
+    }
+  }
   initCamera() {
     const { width, height } = this.dimmensions;
     const aspectRatio = width / height;
@@ -66,8 +71,7 @@ class SceneManager {
   resizeHandler() {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    // const width = this.canvas.width();
-    // const height = this.canvas.height();
+    
     this.renderer.setSize( width, height );
     this.camera.aspect = width /height;
     this.camera.updateProjectionMatrix();
@@ -76,7 +80,10 @@ class SceneManager {
     this.renderer.render( this.scene, this.camera );
   }
   add(obj) {
-    this.scene.add( obj );
+    this.scene.add(obj);
+  }
+  remove(name) {
+    this.scene.remove(name);
   }
   set cameraPosition(coords) { //x, y, z
     for(let axis in coords) {

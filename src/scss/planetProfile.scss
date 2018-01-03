@@ -7,13 +7,13 @@
 	box-sizing: border-box;
 	z-index: 1;
 	background-color: rgba($bg, $bgFadeAlpha);
-	.profile {
+	.info {
 		flex: 2;
 	}
 	.menu {
 		flex: 1;
 	}
-	.profile {
+	.info {
 		.title {
 			font-size: 1.1em;
 		}

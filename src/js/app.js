@@ -1,46 +1,70 @@
 import $ from 'jquery';
 import * as THREE from 'three'
+import {
+  STATE_PROFILE, STATE_SS,
+  PROFILE_VIEW, PROFILE_VIEW_INFO, PROFILE_VIEW_MENU, SS_VIEW,
+  TOGGLER, BODY
+} from './constants.js';
 import SceneManager from './sceneManager.js';
 import SolarSystem from './solarSystem/solarSystem.js';
-import Profile from './profile/profile.js';
+import ProfileRenderer from './profile/profile.js';
 
-const ssParent = $('#solarSystem');
-ssParent.height(window.innerHeight);
-ssParent.width(window.innerWidth);
+BODY.height(window.innerHeight);
+BODY.width(window.innerWidth);
 
-const app = new SceneManager(ssParent);
+const app = new SceneManager(BODY);
 app.constructScene();
 app.initWindowResizeHandler();
 app.cameraPosition = {z: 60};
 app.addOrbitControls();
-app.addPointLight({x: 200, y: 200, z: 400});
-app.addAmbientLight();
 
-ssParent.append(app.renderer.domElement);
+BODY.append(app.renderer.domElement);
+let SS = new SolarSystem(app);
+let Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU);
 
-const SS = new SolarSystem(app);
-SS.addAllBodies();
-SS.timeFactor = 40;
+let currentState = STATE_SS;
+const Views = {
+  [STATE_SS]: () => {
+    PROFILE_VIEW.fadeOut();
 
-const profileContainer = $('#planetProfile .profile');
-const menuContainer = $('#planetProfile .menu');
+    SS = new SolarSystem(app);
+    SS.addAllBodies();
+    SS.timeFactor = 40;
+    app.addPointLight({x: 200, y: 200, z: 400});
+    app.addAmbientLight();
+  },
+  [STATE_PROFILE]: () => {
+    PROFILE_VIEW.fadeIn();
 
-const ProfileView = new Profile(profileContainer, menuContainer);
-ProfileView.render();
+    Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU);
+    Profile.init();
+    app.addPointLight({x: 200, y: 200, z: 400});
+    app.addAmbientLight();
+  },
+}
+const Renderers = {
+  [STATE_SS]: () => {
+    SS.render();
+  },
+  [STATE_PROFILE]: () => {
+    Profile.render();
+  }
+}
 
-const profileParent = $('#planetProfile');
-const toggleElement = $('#controls .profileToggler');
-profileParent.fadeOut();
+const toggleViews = () => {
+  app.clearScene();
+  currentState = currentState == STATE_SS ? STATE_PROFILE : STATE_SS;
+  Views[currentState]();
+}
 
-toggleElement.click(() => {
-  profileParent.fadeToggle();
-  ssParent.fadeToggle();
-});
 
-const GameLoop = ()  => {
+const GameLoop = () => {
   requestAnimationFrame(GameLoop);
-  SS.render();
+  Renderers[currentState]();
   app.render();
 }
+
+Views[currentState]();
+TOGGLER.click(toggleViews);
 
 GameLoop();

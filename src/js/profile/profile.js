@@ -9,6 +9,11 @@ class Profile extends Control {
     this.menuContainer = menuContainer;
     this.title = {};
   }
+  init() {
+    this.menuContainer.empty();
+    this.renderProfile();
+    this.renderMenuButtons();
+  }
   renderProfile() {
     this.title = $('<div>', {'class': 'title'});
     this.updateTitle('earth');
@@ -33,8 +38,7 @@ class Profile extends Control {
     this.title.text(name);
   }
   render() {
-    this.renderProfile();
-    this.renderMenuButtons();
+    
   }
 }
 

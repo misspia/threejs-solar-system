@@ -13,13 +13,10 @@ body {
 	background-color: $bg;
 	color: $blue;
 }
-#solarSystem {
-	width: 100%;
-	height: 100%;
-}
+
 #controls {
 	position: fixed;
 }
-#solarSystem, #planetProfile {
+#planetProfile {
 	position: absolute;
 }
