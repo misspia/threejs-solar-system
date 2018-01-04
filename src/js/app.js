@@ -12,6 +12,7 @@ import ProfileRenderer from './profile/profile.js';
 BODY.height(window.innerHeight);
 BODY.width(window.innerWidth);
 
+
 const app = new SceneManager(BODY);
 app.constructScene();
 app.initWindowResizeHandler();

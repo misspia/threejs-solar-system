@@ -11,8 +11,8 @@ const base = {
 
 const ring = {
   color: metadata.color,
-  radius: metadata.ringRadius,
-  tube: 0.3,
+  radius: metadata.ringRadius * 1.25,
+  tube: 0.1,
   // tube: metadata.ringThickness,
   radialSegments: 5,
   tubularSegments: 12

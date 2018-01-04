@@ -73,6 +73,9 @@ class SceneManager {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
+    this.canvas.width(width);
+    this.canvas.height(height);
+
     this.renderer.setSize( width, height );
     this.camera.aspect = width /height;
     this.camera.updateProjectionMatrix();
