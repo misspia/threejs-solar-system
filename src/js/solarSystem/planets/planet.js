@@ -16,16 +16,21 @@ class Planet extends CelestialBody {
       flatShading: true
     });
     this.ring = new THREE.Mesh(geometry, material);
-    this.ringTilt = {axis: 'x', radians: radians90Degrees};
+    this.ringTilt = {x: radians90Degrees};
     this.ring.castShadow = true;
     this.ring.receiveShadow = true;
     this.add(this.ring);
   }
-  set ringTilt({axis, radians}) {
-    this.ring.rotation[axis] = radians;
+  set ringTilt(tilt) { //axisName: radians
+    for(let axis in tilt) {
+      this.ring.rotation[axis] = tilt[axis];
+    }
   }
-  set tilt({axis, radians}) {
-    this.body.rotation[axis] = radians;
+  set tilt(tilt) { //axisName: radians
+
+    for(let axis in tilt) {
+      this.body.rotation[axis] = tilt[axis];
+    }
   }
 }
 

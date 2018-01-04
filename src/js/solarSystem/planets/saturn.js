@@ -20,6 +20,6 @@ const ring = {
 
 Saturn.addBase(base);
 Saturn.addRing(ring);
-Saturn.tilt = {axis: 'x', radians: metadata.obliquity};
+Saturn.tilt = {x: metadata.obliquity};
 
 export default Saturn;

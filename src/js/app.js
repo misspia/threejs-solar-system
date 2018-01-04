@@ -25,8 +25,6 @@ let Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU);
 let currentState = STATE_SS;
 const Views = {
   [STATE_SS]: () => {
-    PROFILE_VIEW.fadeOut();
-
     SS = new SolarSystem(app);
     SS.addAllBodies();
     SS.timeFactor = 40;
@@ -34,9 +32,7 @@ const Views = {
     app.addAmbientLight();
   },
   [STATE_PROFILE]: () => {
-    PROFILE_VIEW.fadeIn();
-
-    Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU);
+    Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU, app);
     Profile.init();
     app.addPointLight({x: 200, y: 200, z: 400});
     app.addAmbientLight();
@@ -53,7 +49,13 @@ const Renderers = {
 
 const toggleViews = () => {
   app.clearScene();
-  currentState = currentState == STATE_SS ? STATE_PROFILE : STATE_SS;
+  if(currentState == STATE_SS) {
+    currentState = STATE_PROFILE;
+    PROFILE_VIEW.fadeIn();
+  } else {
+    currentState = STATE_SS;
+    PROFILE_VIEW.fadeOut();
+  }
   Views[currentState]();
 }
 

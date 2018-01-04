@@ -20,6 +20,6 @@ const ring = {
 
 Uranus.addBase(base);
 Uranus.addRing(ring);
-Uranus.tilt = {axis: 'x', radians: metadata.obliquity};
+Uranus.tilt = {x: metadata.obliquity};
 
 export default Uranus;

@@ -10,6 +10,7 @@ const base = {
 };
 
 Venus.addBase(base);
-Venus.tilt = {axis: 'x', radians: metadata.obliquity};
+Venus.tilt = {x: metadata.obliquity};
+
 
 export default Venus;

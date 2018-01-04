@@ -26,6 +26,7 @@ class SceneManager {
   }
   initScene() {
     this.scene = new THREE.Scene();
+    window.scene = this.scene;
   }
   clearScene() {
     while(this.scene.children.length) {
@@ -71,7 +72,7 @@ class SceneManager {
   resizeHandler() {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    
+
     this.renderer.setSize( width, height );
     this.camera.aspect = width /height;
     this.camera.updateProjectionMatrix();

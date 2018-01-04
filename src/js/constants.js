@@ -4,7 +4,7 @@ import $ from 'jquery';
 export const BODY = $('body');
 
 export const PROFILE_VIEW = $('#planetProfile');
-export const PROFILE_VIEW_INFO = $('#planetProfile .profile');
+export const PROFILE_VIEW_INFO = $('#planetProfile .info');
 export const PROFILE_VIEW_MENU = $('#planetProfile .menu');
 
 export const TOGGLER = $('#controls .profileToggler');

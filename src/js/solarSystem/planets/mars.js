@@ -10,5 +10,6 @@ const base = {
 };
 
 Mars.addBase(base);
+Mars.tilt = {x: metadata.obliquity};
 
 export default Mars;

@@ -20,14 +20,20 @@ class CelestialBody {
     this.base.receiveShadow = true;
     this.add(this.base);
   }
-  move({axis, scalar}) {
-    this.body.position[axis] += scalar;
+  move(movement) { // axisName: movementSize
+    for(let axis in movement) {
+      this.body.position[axis] += movement[axis];
+    }
   }
-  set rotation({axis, radians}) {
-    this.body.rotation[axis] += radians;
+  set rotation(rotationMap) { //axisName: radians
+    for(let axis in rotationMap) {
+        this.body.rotation[axis] += rotationMap[axis];
+    }
   }
-  set position({axis, scalar}) {
-    this.body.position[axis] = scalar;
+  set position(coord) { // axisName: value
+    for(let axis in coord) {
+      this.body.position[axis] = coord[axis];
+    }
   }
 }
 
