@@ -20,28 +20,21 @@ class Profile extends Control {
     this.infoContainer.empty();
     this.renderInfo();
     this.renderMenuButtons();
-    this.appendModel();
-    console.log(this.app.scene.children)
+    this.appendModel(defaultModel);
   }
-  appendModel() {
-    this.model = Planets[defaultModel];
-    // this.model.position = {
-    //   axis: 'x',
-    //   scalar: -50
-    // }
-    // this.model.body.scale.set(2, 2, 2);
+  appendModel(name) {
+    this.model = Planets[name];
+    this.model.position = {x: 0};
     this.app.add(this.model.body);
-
   }
   rotateModel() {
     this.model.rotation = {
-      axis: 'y',
-      radians: ssMetadata[defaultModel].rotationSpeed
+      y: ssMetadata[defaultModel].rotationSpeed
     }
   }
   renderInfo() {
     this.title = $('<div>', {'class': 'title'});
-    this.updateTitle('earth');
+    this.updateTitle(defaultModel);
     this.append(this.title, this.infoContainer);
   }
   renderMenuButtons() {
@@ -57,7 +50,9 @@ class Profile extends Control {
     })
   }
   selectBody(name) {
-      this.updateTitle(name)
+      this.updateTitle(name);
+      this.app.remove(this.model.body);
+      this.appendModel(name);
   }
   updateTitle(name) {
     this.title.text(name);

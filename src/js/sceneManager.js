@@ -84,7 +84,9 @@ class SceneManager {
     this.scene.add(obj);
   }
   remove(name) {
+    console.log(name, this.scene.children)
     this.scene.remove(name);
+    console.log(this.scene.children)
   }
   set cameraPosition(coords) { //x, y, z
     for(let axis in coords) {

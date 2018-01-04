@@ -15,14 +15,13 @@ BODY.width(window.innerWidth);
 const app = new SceneManager(BODY);
 app.constructScene();
 app.initWindowResizeHandler();
-app.cameraPosition = {z: 60};
 app.addOrbitControls();
 
 BODY.append(app.renderer.domElement);
 let SS = new SolarSystem(app);
 let Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU);
 
-let currentState = STATE_SS;
+let currentState = STATE_PROFILE;
 const Views = {
   [STATE_SS]: () => {
     SS = new SolarSystem(app);
@@ -30,12 +29,14 @@ const Views = {
     SS.timeFactor = 40;
     app.addPointLight({x: 200, y: 200, z: 400});
     app.addAmbientLight();
+    app.cameraPosition = {z: 60};
   },
   [STATE_PROFILE]: () => {
     Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU, app);
     Profile.init();
     app.addPointLight({x: 200, y: 200, z: 400});
     app.addAmbientLight();
+    app.cameraPosition = {z: 5};
   },
 }
 const Renderers = {
@@ -58,7 +59,6 @@ const toggleViews = () => {
   }
   Views[currentState]();
 }
-
 
 const GameLoop = () => {
   requestAnimationFrame(GameLoop);

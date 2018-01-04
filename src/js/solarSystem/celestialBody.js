@@ -25,6 +25,9 @@ class CelestialBody {
       this.body.position[axis] += movement[axis];
     }
   }
+  get name() {
+    return this.body.name;
+  }
   set rotation(rotationMap) { //axisName: radians
     for(let axis in rotationMap) {
         this.body.rotation[axis] += rotationMap[axis];
