@@ -62,16 +62,12 @@ class SolarSystem {
         const orbitRadius = metadata[planet].orbitRadius;
         const x = Math.cos(angle) * orbitRadius;
         const z = Math.sin(angle) * orbitRadius;
-        Planets[planet].position = {axis: 'x', scalar: x};
-        Planets[planet].position = {axis: 'z', scalar: z};
+        Planets[planet].position = {x, z};
       });
     }
     updateAllPlanetaryRotations() {
       Object.keys(Planets).forEach(planet => {
-        Planets[planet].rotation = {
-          axis: 'y',
-          radians: metadata[planet].rotationSpeed
-        }
+        Planets[planet].rotation = { y: metadata[planet].rotationSpeed};
       })
     }
     render() {

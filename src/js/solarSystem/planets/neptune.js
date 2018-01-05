@@ -11,15 +11,12 @@ const base = {
 
 const ring = {
   color: metadata.color,
-  radius: metadata.ringRadius,
-  tube: 0.3,
-  // tube: metadata.ringThickness,
-  radialSegments: 5,
-  tubularSegments: 12
+  radiusStart: metadata.ringRadiusStart,
+  radiusEnd: metadata.ringRadiusEnd,
 };
 
 Neptune.addBase(base);
 Neptune.addRing(ring);
-Neptune.tilt = {axis: 'x', radians: metadata.obliquity};
+Neptune.tilt = {x: metadata.obliquity};
 
 export default Neptune;

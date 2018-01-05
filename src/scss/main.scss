@@ -5,7 +5,7 @@
 @import './controls.scss';
 
 body {
-	height: 100vh;
+	height: 100%;
 	width: 100vw;
 	overflow: hidden;
 	font-family: $bodyFontFamily;
@@ -13,13 +13,10 @@ body {
 	background-color: $bg;
 	color: $blue;
 }
-#solarSystem {
-	width: 100%;
-	height: 100%;
-}
+
 #controls {
 	position: fixed;
 }
-#solarSystem, #planetProfile {
+#planetProfile {
 	position: absolute;
 }

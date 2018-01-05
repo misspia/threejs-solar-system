@@ -10,6 +10,6 @@ const base = {
 };
 
 Earth.addBase(base);
-Earth.tilt = {axis: 'x', radians: metadata.obliquity};
+Earth.tilt = {x: metadata.obliquity};
 
 export default Earth;

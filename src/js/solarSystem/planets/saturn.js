@@ -11,15 +11,12 @@ const base = {
 
 const ring = {
   color: metadata.color,
-  radius: metadata.ringRadius,
-  tube: 0.3,
-  // tube: metadata.ringThickness,
-  radialSegments: 5,
-  tubularSegments: 12
+  radiusStart: metadata.ringRadiusStart,
+  radiusEnd: metadata.ringRadiusEnd,
 };
 
 Saturn.addBase(base);
 Saturn.addRing(ring);
-Saturn.tilt = {axis: 'x', radians: metadata.obliquity};
+Saturn.tilt = {x: metadata.obliquity};
 
 export default Saturn;

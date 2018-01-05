@@ -10,5 +10,6 @@ const base = {
 };
 
 Mercury.addBase(base);
+Mercury.tilt = {x: metadata.obliquity};
 
 export default Mercury;

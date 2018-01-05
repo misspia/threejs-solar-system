@@ -1,46 +1,72 @@
 import $ from 'jquery';
 import * as THREE from 'three'
+import {
+  STATE_PROFILE, STATE_SS,
+  PROFILE_VIEW, PROFILE_VIEW_INFO, PROFILE_VIEW_MENU, SS_VIEW,
+  TOGGLER, BODY
+} from './constants.js';
 import SceneManager from './sceneManager.js';
 import SolarSystem from './solarSystem/solarSystem.js';
-import Profile from './profile/profile.js';
+import ProfileRenderer from './profile/profile.js';
 
-const ssParent = $('#solarSystem');
-ssParent.height(window.innerHeight);
-ssParent.width(window.innerWidth);
+BODY.height(window.innerHeight);
+BODY.width(window.innerWidth);
 
-const app = new SceneManager(ssParent);
+const app = new SceneManager(BODY);
 app.constructScene();
 app.initWindowResizeHandler();
-app.cameraPosition = {z: 60};
 app.addOrbitControls();
-app.addPointLight({x: 200, y: 200, z: 400});
-app.addAmbientLight();
 
-ssParent.append(app.renderer.domElement);
+BODY.append(app.renderer.domElement);
+let SS = new SolarSystem(app);
+let Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU);
 
-const SS = new SolarSystem(app);
-SS.addAllBodies();
-SS.timeFactor = 40;
+let currentState = STATE_PROFILE;
+const Views = {
+  [STATE_SS]: () => {
+    SS = new SolarSystem(app);
+    SS.addAllBodies();
+    SS.timeFactor = 20;
+    app.addPointLight({x: 200, y: 200, z: 400});
+    app.addAmbientLight();
+    app.cameraPosition = {z: 60};
+  },
+  [STATE_PROFILE]: () => {
+    Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU, app);
+    Profile.init();
+    app.addPointLight({x: 200, y: 200, z: 400});
+    app.addAmbientLight();
+    app.cameraPosition = {x: 0, y: 0, z: 4}; // RODO: reset roation/ zoom
+  },
+}
+const Renderers = {
+  [STATE_SS]: () => {
+    SS.render();
+  },
+  [STATE_PROFILE]: () => {
+    Profile.render();
+  }
+}
 
-const profileContainer = $('#planetProfile .profile');
-const menuContainer = $('#planetProfile .menu');
+const toggleViews = () => {
+  app.clearScene();
+  if(currentState == STATE_SS) {
+    currentState = STATE_PROFILE;
+    PROFILE_VIEW.fadeIn();
+  } else {
+    currentState = STATE_SS;
+    PROFILE_VIEW.fadeOut();
+  }
+  Views[currentState]();
+}
 
-const ProfileView = new Profile(profileContainer, menuContainer);
-ProfileView.render();
-
-const profileParent = $('#planetProfile');
-const toggleElement = $('#controls .profileToggler');
-profileParent.fadeOut();
-
-toggleElement.click(() => {
-  profileParent.fadeToggle();
-  ssParent.fadeToggle();
-});
-
-const GameLoop = ()  => {
+const GameLoop = () => {
   requestAnimationFrame(GameLoop);
-  SS.render();
+  Renderers[currentState]();
   app.render();
 }
+
+Views[currentState]();
+TOGGLER.click(toggleViews);
 
 GameLoop();

@@ -85,8 +85,8 @@ const data = {
   },
   uranus: {
     radius: 25559,
-    ringRadiusStart: 26840, //https://en.wikipedia.org/wiki/Rings_of_Uranus#List_of_properties
-    ringRadiusEnd: 103000,
+    ringRadiusStart: 51149, //https://en.wikipedia.org/wiki/Rings_of_Uranus#List_of_properties
+    ringRadiusEnd: 51149 + 96.4, // epsilon ring only
     distanceFromSun: 19.19,
     orbitInclination: 0.77,
     orbitPeriod: 30.685,
@@ -170,8 +170,8 @@ export const jupiter = {
 export const saturn = {
   label: 'saturn',
   radius: calc.gameDistance(data.saturn.radius),
-  ringRadius: calc.gameDistance(data.saturn.ringRadiusStart),
-  ringThickness: calc.gameDistance(data.saturn.ringRadiusEnd - data.saturn.ringRadiusStart),
+  ringRadiusStart: calc.gameDistance(data.saturn.ringRadiusStart),
+  ringRadiusEnd: calc.gameDistance(data.saturn.ringRadiusEnd),
   orbitRadius: calc.orbitRadius(sun.radius, data.saturn.distanceFromSun),
   orbitInclination: calc.radians(data.saturn.orbitInclination),
   orbitSpeed: calc.orbitSpeed(data.saturn.orbitPeriod),
@@ -184,8 +184,8 @@ export const saturn = {
 export const uranus = {
   label: 'uranus',
   radius: calc.gameDistance(data.uranus.radius),
-  ringRadius: calc.gameDistance(data.uranus.ringRadiusStart),
-  ringThickness: calc.gameDistance(data.uranus.ringRadiusEnd - data.uranus.ringRadiusStart),
+  ringRadiusStart: calc.gameDistance(data.uranus.ringRadiusStart),
+  ringRadiusEnd: calc.gameDistance(data.uranus.ringRadiusEnd),
   orbitRadius: calc.orbitRadius(sun.radius, data.uranus.distanceFromSun),
   orbitInclination: calc.radians(data.uranus.orbitInclination),
   orbitSpeed: calc.orbitSpeed(data.uranus.orbitPeriod),
@@ -198,8 +198,8 @@ export const uranus = {
 export const neptune = {
   label: 'neptune',
   radius: calc.gameDistance(data.neptune.radius),
-  ringRadius: calc.gameDistance(data.neptune.ringRadiusStart),
-  ringThickness: calc.gameDistance(data.neptune.ringRadiusEnd - data.neptune.ringRadiusStart),
+  ringRadiusStart: calc.gameDistance(data.neptune.ringRadiusStart),
+  ringRadiusEnd: calc.gameDistance(data.neptune.ringRadiusEnd),
   orbitRadius: calc.orbitRadius(sun.radius, data.neptune.distanceFromSun),
   orbitInclination: calc.radians(data.neptune.orbitInclination),
   orbitSpeed: calc.orbitSpeed(data.neptune.orbitPeriod),
