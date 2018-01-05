@@ -26,7 +26,7 @@ const Views = {
   [STATE_SS]: () => {
     SS = new SolarSystem(app);
     SS.addAllBodies();
-    SS.timeFactor = 40;
+    SS.timeFactor = 20;
     app.addPointLight({x: 200, y: 200, z: 400});
     app.addAmbientLight();
     app.cameraPosition = {z: 60};
@@ -36,7 +36,7 @@ const Views = {
     Profile.init();
     app.addPointLight({x: 200, y: 200, z: 400});
     app.addAmbientLight();
-    app.cameraPosition = {z: 5};
+    app.cameraPosition = {x: 0, y: 0, z: 4}; // RODO: reset roation/ zoom
   },
 }
 const Renderers = {

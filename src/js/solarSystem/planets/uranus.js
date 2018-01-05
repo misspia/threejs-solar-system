@@ -11,11 +11,8 @@ const base = {
 
 const ring = {
   color: metadata.color,
-  radius: metadata.ringRadius * 1.25,
-  tube: 0.1,
-  // tube: metadata.ringThickness,
-  radialSegments: 5,
-  tubularSegments: 12
+  radiusStart: metadata.ringRadiusStart,
+  radiusEnd: metadata.ringRadiusEnd,
 };
 
 Uranus.addBase(base);
