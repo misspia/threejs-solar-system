@@ -18,7 +18,6 @@ const getRandomArbitrary = (min, max) => {
 class Planet extends CelestialBody {
   constructor(name) {
     super(name);
-    // this.ring = new THREE.Group();
     this.ring = {};
     this.fog = {};
   }

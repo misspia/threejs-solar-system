@@ -6,6 +6,38 @@ import Stars from '../solarSystem/stars/stars.js';
 
 const defaultModel = 'saturn';
 
+const desiredFields = {
+  radius: {
+    label: 'Radius',
+    formatter: (radius) => {
+      return `${radius.toFixed(2)} km`;
+    }
+  },
+  distanceFromSun: {
+    label: 'Distance from sun',
+    formatter: (distance) => {
+      return `${distance.toFixed(2)} AU`;
+    }
+  },
+  orbitPeriod: {
+    label: 'Orbit period',
+    formatter: (days) => {
+      days = (days / 365).toFixed(2);
+      if(days == 1) return `${days} Earth year`;
+      return `${days} Earth years`;
+    }
+  },
+  rotationPeriod: {
+    label: 'Rotation period',
+    formatter: (days) => {
+      days = days.toFixed(2);
+      if(days == 1) return `${days} Earth day`;
+      return `${days} Earth days`;
+    }
+  }
+};
+
+
 class Profile extends Control {
   constructor(infoContainer, menuContainer, app) {
     super();
@@ -13,33 +45,51 @@ class Profile extends Control {
     this.infoContainer = infoContainer;
     this.menuContainer = menuContainer;
     this.title = {};
+    this.profileInfo = {
+      title: {},
+      details: {}
+    };
     this.model = {};
   }
   init() {
     this.menuContainer.empty();
     this.infoContainer.empty();
-    this.renderInfo();
-    this.renderMenuButtons();
+    this.initInfo();
+    this.initMenu();
     this.appendModel(defaultModel);
   }
   appendModel(name) {
-    this.model = Planets[name];
-    this.model.position = {x: 0};
+    if(Planets[name]) this.model = Planets[name];
+    if(!Planets[name]) this.model = Stars[name];
+
+    this.resetModel(); // using same instance as SS (has been repositioned, etc)
     this.app.add(this.model.body);
+  }
+  resetModel() {
+    this.model.position = {x: 0, y: 0, z: 0};
   }
   rotateModel() {
     this.model.rotation = {
       y: ssMetadata[defaultModel].rotationSpeed
     }
   }
-  renderInfo() {
-    this.title = $('<div>', {'class': 'title'});
-    this.updateTitle(defaultModel);
-    this.append(this.title, this.infoContainer);
+  initInfo() {
+    this.profileInfo.title = $('<div>', {'class': 'title'});
+    this.append(this.profileInfo.title, this.infoContainer);
+
+    const detailsContainer = $('<div>', {class: 'details'});
+    this.append(detailsContainer, this.infoContainer);
+
+    this.profileInfo.details =  {};
+    Object.keys(desiredFields).forEach((field) => {
+      this.profileInfo.details[field] = $('<div>');
+      this.append(this.profileInfo.details[field], detailsContainer);
+    })
+    this.updateProfileInfo(defaultModel);
   }
-  renderMenuButtons() {
-    Object.keys(ssMetadata).forEach(bodyName => {
-      const label = ssMetadata[bodyName].label;
+  initMenu() {
+    Object.keys(Planets).forEach(planetName => {
+      const label = ssMetadata[planetName].label;
       const config = {
         label,
         onClick: () => this.selectBody(label),
@@ -50,12 +100,19 @@ class Profile extends Control {
     })
   }
   selectBody(name) {
-      this.updateTitle(name);
+      this.updateProfileInfo(name);
       this.app.remove(this.model.body);
       this.appendModel(name);
   }
-  updateTitle(name) {
-    this.title.text(name);
+  updateProfileInfo(name) {
+    this.profileInfo.title.text(name);
+    Object.keys(this.profileInfo.details).forEach((field) => {
+      const rawData = ssMetadata[name]['raw'][field];
+      const label = desiredFields[field].label;
+      const formattedData = desiredFields[field].formatter(rawData);
+      const elementText = `${label}: ${formattedData}`;
+      this.profileInfo.details[field].text(elementText);
+    })
   }
   render() {
     this.rotateModel();
