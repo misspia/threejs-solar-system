@@ -1,10 +1,12 @@
 import * as THREE from 'three';
 import OrbitControls from 'three-orbit-controls';
+import Stats from 'stats.js';
 
 const OrbitController = OrbitControls(THREE);
 
 class SceneManager {
   constructor(canvas) {
+    this.states = {};
     this.canvas = canvas;
     this.dimmensions = { width: canvas.width(), height: canvas.height() };
     this.clock = new THREE.Clock();
@@ -23,6 +25,14 @@ class SceneManager {
     this.initScene();
     this.initCamera();
     this.initRenderer();
+  }
+  initPerformanceMonitor(panel = 0) { // 0: fps, 1: ms, 2: mg, 3+: custom
+    this.stats = new Stats();
+    this.stats.showPanel(panel);
+    this.canvas.append( this.stats.dom );
+  }
+  addPerformancePanel(panel) {
+    this.stats.addPanel(panel);
   }
   initScene() {
     this.scene = new THREE.Scene();

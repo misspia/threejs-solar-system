@@ -14,6 +14,7 @@ BODY.width(window.innerWidth);
 
 const app = new SceneManager(BODY);
 app.constructScene();
+app.initPerformanceMonitor();
 app.initWindowResizeHandler();
 app.addOrbitControls();
 
@@ -61,9 +62,13 @@ const toggleViews = () => {
 }
 
 const GameLoop = () => {
-  requestAnimationFrame(GameLoop);
+  app.stats.begin();
+
   Renderers[currentState]();
   app.render();
+
+  app.stats.end();
+  requestAnimationFrame(GameLoop);
 }
 
 Views[currentState]();

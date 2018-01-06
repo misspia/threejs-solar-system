@@ -4,7 +4,7 @@ import * as ssMetadata from '../solarSystem/solarSystem.metadata.js';
 import Planets from '../solarSystem/planets/planets.js';
 import Stars from '../solarSystem/stars/stars.js';
 
-const defaultModel = 'uranus';
+const defaultModel = 'saturn';
 
 class Profile extends Control {
   constructor(infoContainer, menuContainer, app) {
