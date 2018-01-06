@@ -18,7 +18,8 @@ const getRandomArbitrary = (min, max) => {
 class Planet extends CelestialBody {
   constructor(name) {
     super(name);
-    this.ring = new THREE.Group();
+    // this.ring = new THREE.Group();
+    this.ring = {};
     this.fog = {};
   }
   addRing({color, radiusStart, radiusEnd}) {
@@ -34,33 +35,48 @@ class Planet extends CelestialBody {
       color,
       radius: rockRadius
     }
+    const rock = this.createRock(rockConfig);
+    let mergedRockGeometry = new THREE.Geometry();
     for(let rockIndex = 0; rockIndex < numRocks; rockIndex ++) {
-      const rock = this.createRock(rockConfig);
       const radians = toRadians(rockIndex * angleIncrement);
       const randomRadius = getRandomArbitrary(radiusStart, radiusEnd);
-      rock.position.x = randomRadius * Math.cos(radians);
-      rock.position.z = randomRadius * Math.sin(radians);
-      rock.position.y = getRandomArbitrary(-0.05, 0.05);
+      const translate = this.getRockTranslationCoords(randomRadius, radians);
+      const rotate = this.getRandomRotationAngles();
 
-      this.randomlyRotateMesh(rock);
-      this.ring.add(rock);
+      rock.geometry.rotateX(rotate.x); // order of transformations: S R T
+      rock.geometry.rotateY(rotate.y);
+      rock.geometry.rotateZ(rotate.z);
+      rock.geometry.translate(translate.x, translate.y, translate.z);
+
+      mergedRockGeometry.merge(rock.geometry);
+
+      rock.geometry.translate(-translate.x, -translate.y, -translate.z);
+      rock.geometry.rotateX(-rotate.x);
+      rock.geometry.rotateY(-rotate.y);
+      rock.geometry.rotateZ(-rotate.z);
     }
+    this.ring = new THREE.Mesh(mergedRockGeometry, rock.material)
   }
   createRock({color, radius}) {
-    const geometry = new THREE.TetrahedronBufferGeometry(radius, 0);
+    const geometry = new THREE.TetrahedronGeometry(radius, 0);
     const material = new THREE.MeshPhongMaterial({
           color,
           shininess: 100,
           flatShading: true
         });
-    const rock = new THREE.Mesh(geometry, material);
-    return rock;
+    return {geometry, material};
   }
-  randomlyRotateMesh(mesh) {
+  getRockTranslationCoords(radius, radians) {
+    const x = radius * Math.cos(radians);
+    const z = radius * Math.sin(radians);
+    const y = getRandomArbitrary(-0.05, 0.05);
+    return {x, y, z};
+  }
+  getRandomRotationAngles(geometry) {
     const x = toRadians(getRandomArbitrary(0, 360));
     const y = toRadians(getRandomArbitrary(0, 360));
     const z = toRadians(getRandomArbitrary(0, 360));
-    mesh.rotation.set(x, y, z);
+    return {x, y, z};
   }
   set ringTilt(tilt) { //axisName: radians
     for(let axis in tilt) {
