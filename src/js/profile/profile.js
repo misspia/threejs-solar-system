@@ -3,6 +3,7 @@ import Control from '../controls/control.js';
 import * as ssMetadata from '../solarSystem/solarSystem.metadata.js';
 import Planets from '../solarSystem/planets/planets.js';
 import Stars from '../solarSystem/stars/stars.js';
+import {animateProfileInfo} from './animations.js';
 
 const defaultModel = 'saturn';
 
@@ -112,7 +113,8 @@ class Profile extends Control {
       const formattedData = desiredFields[field].formatter(rawData);
       const elementText = `${label}: ${formattedData}`;
       this.profileInfo.details[field].text(elementText);
-    })
+    });
+    animateProfileInfo();
   }
   render() {
     this.rotateModel();
