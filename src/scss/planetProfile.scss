@@ -1,6 +1,6 @@
 #planetProfile {
-	padding: $containerPad;
-	padding-top: $topOffset;
+	// padding: $topOffset+$containerPad $containerPad;
+	padding: $topOffset+2em 2em;
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -9,22 +9,31 @@
 	z-index: 1;
 	background-color: rgba($bg, 0.5);
 	.info {
-		// border: solid red 1px;
 		align-self: flex-start;
 		flex: 2;
 	}
 	.menu {
-		// border: solid blue 1px;
 		flex: 1;
 	}
 	.info {
-		margin-left: 1em;
+		padding-left: 1em;
+		position: relative;
 		font-size: 1.2em;
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			height: 100%;
+			width: 3px;
+			background-color: $blue;
+		}
 		.title {
 			padding: 0.5em 0;
 			font-size: 2em;
 			letter-spacing: 0.2em;
 			text-transform: uppercase;
+			color: $red;
 		}
 		.details {
 			letter-spacing: 0.1em;

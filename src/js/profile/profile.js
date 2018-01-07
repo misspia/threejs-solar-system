@@ -3,7 +3,7 @@ import Control from '../controls/control.js';
 import * as ssMetadata from '../solarSystem/solarSystem.metadata.js';
 import Planets from '../solarSystem/planets/planets.js';
 import Stars from '../solarSystem/stars/stars.js';
-import {animateProfileInfo} from './animations.js';
+import { animateProfileInfo, animateMenuEntry } from './animations.js';
 
 const defaultModel = 'saturn';
 
@@ -89,6 +89,10 @@ class Profile extends Control {
     this.updateProfileInfo(defaultModel);
   }
   initMenu() {
+    this.generateMenuItems();
+    animateMenuEntry({play: true});
+  }
+  generateMenuItems() {
     Object.keys(Planets).forEach(planetName => {
       const label = ssMetadata[planetName].label;
       const config = {
@@ -106,7 +110,12 @@ class Profile extends Control {
       this.appendModel(name);
   }
   updateProfileInfo(name) {
+    this.populateProfile(name);
+    animateProfileInfo({play: true});
+  }
+  populateProfile(name) {
     this.profileInfo.title.text(name);
+
     Object.keys(this.profileInfo.details).forEach((field) => {
       const rawData = ssMetadata[name]['raw'][field];
       const label = desiredFields[field].label;
@@ -114,7 +123,6 @@ class Profile extends Control {
       const elementText = `${label}: ${formattedData}`;
       this.profileInfo.details[field].text(elementText);
     });
-    animateProfileInfo();
   }
   render() {
     this.rotateModel();
