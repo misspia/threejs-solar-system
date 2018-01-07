@@ -6,7 +6,7 @@ import Planets from '../solarSystem/planets/planets.js';
 import Stars from '../solarSystem/stars/stars.js';
 import { animateProfileInfo, animateMenuEntry } from './animations.js';
 
-const defaultModel = 'saturn';
+const defaultModel = 'earth';
 
 const desiredFields = {
   radius: {
@@ -58,7 +58,7 @@ class Profile extends Control {
     this.infoContainer.empty();
     this.initInfo();
     this.initMenu();
-    this.appendModel(defaultModel);
+    // this.selectBody(defaultModel);
   }
   appendModel(name) {
     if(Planets[name]) this.model = Planets[name];
@@ -77,6 +77,7 @@ class Profile extends Control {
   }
   initInfo() {
     this.profileInfo.title = $('<div>', {'class': 'title'});
+    this.profileInfo.title.text('Select a planet');
     this.append(this.profileInfo.title, this.infoContainer);
 
     const detailsContainer = $('<div>', {class: 'details'});
@@ -87,7 +88,7 @@ class Profile extends Control {
       this.profileInfo.details[field] = $('<div>');
       this.append(this.profileInfo.details[field], detailsContainer);
     })
-    this.selectBody(defaultModel);
+    animateProfileInfo({play: true});
   }
   initMenu() {
     this.generateMenuItems();
@@ -129,7 +130,7 @@ class Profile extends Control {
   zoomToFit() {
     const boundingBox = this.calcBoundingBox();
     const d = boundingBox.max.z;
-    this.app.cameraPosition = { z: d * this.app.camera.aspect  +  1}
+    this.app.cameraPosition = { z: d * this.app.camera.aspect  +  0.2}
   }
   setFOV() {
     this.app.camera.fov = this.calcFOV();

@@ -1,10 +1,12 @@
 import Planet from './planet.js';
 import { earth as metadata } from '../solarSystem.metadata.js';
 
+import textureImage from '../../../assets/earth_texture.png';
+
 const Earth = new Planet(metadata.label);
 
 const base = {
-    color: metadata.color,
+    texture: textureImage,
     radius: metadata.radius,
     detail: 1
 };
