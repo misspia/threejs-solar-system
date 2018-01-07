@@ -1,2 +1,1 @@
-# luminous
-webgl experiment
+# threejs solar system
