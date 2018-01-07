@@ -21,7 +21,7 @@ app.addOrbitControls();
 BODY.append(app.renderer.domElement);
 let SS, Profile;
 
-let currentState = STATE_PROFILE;
+let currentState = STATE_SS;
 const Views = {
   [STATE_SS]: () => {
     SS = new SolarSystem(app);
@@ -36,7 +36,7 @@ const Views = {
     Profile.init();
     app.addPointLight({x: 200, y: 200, z: 400});
     app.addAmbientLight();
-    app.cameraPosition = {x: 0, y: 0, z: 4}; // TODO: reset roation/ zoom
+    app.cameraPosition = {x: 0, y: 0, z: 4};
   },
 }
 const Renderers = {

@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import * as THREE from 'three';
 import Control from '../controls/control.js';
 import * as ssMetadata from '../solarSystem/solarSystem.metadata.js';
 import Planets from '../solarSystem/planets/planets.js';
@@ -86,7 +87,7 @@ class Profile extends Control {
       this.profileInfo.details[field] = $('<div>');
       this.append(this.profileInfo.details[field], detailsContainer);
     })
-    this.updateProfileInfo(defaultModel);
+    this.selectBody(defaultModel);
   }
   initMenu() {
     this.generateMenuItems();
@@ -108,6 +109,7 @@ class Profile extends Control {
       this.updateProfileInfo(name);
       this.app.remove(this.model.body);
       this.appendModel(name);
+      this.zoomToFit();
   }
   updateProfileInfo(name) {
     this.populateProfile(name);
@@ -123,6 +125,26 @@ class Profile extends Control {
       const elementText = `${label}: ${formattedData}`;
       this.profileInfo.details[field].text(elementText);
     });
+  }
+  zoomToFit() {
+    const boundingBox = this.calcBoundingBox();
+    const d = boundingBox.max.z;
+    this.app.cameraPosition = { z: d * this.app.camera.aspect  +  1}
+  }
+  setFOV() {
+    this.app.camera.fov = this.calcFOV();
+    this.camera.updateProjectionMatrix();
+  }
+  calcBoundingBox() {
+    const box = new THREE.Box3()
+    const boundingBox = box.setFromObject(this.model.body);
+    return boundingBox;
+  }
+  calcFOV() {
+    const boundingBox = this.calcBoundingBox();
+    const h = boundingBox.max.y;
+    const d = boundingBox.max.z;
+    return 2 * Math.atan(h / (2 * d) * (180 / Math.PI));
   }
   render() {
     this.rotateModel();
