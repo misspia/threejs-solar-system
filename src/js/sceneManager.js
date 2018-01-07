@@ -99,6 +99,10 @@ class SceneManager {
   remove(name) {
     this.scene.remove(name);
   }
+  resetCamera() {
+    this.controls.reset()
+
+  }
   set cameraPosition(coords) { //x, y, z
     for(let axis in coords) {
       this.camera.position[axis] = coords[axis];
