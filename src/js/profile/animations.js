@@ -23,7 +23,7 @@ export const animateProfileInfo = ({onReverseComplete,onComplete, play, reverse,
   .from(title, 0.5, { y: -25, autoAlpha: 0})
   .staggerFrom(details, 0.5, { autoAlpha: 0, x: 40}, 0.1);
 
-  if(play) return tl.play();
+  if(play) return tl.play(0);
   if(reverse) return tl.reverse();
 }
 

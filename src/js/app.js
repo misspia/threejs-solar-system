@@ -14,7 +14,7 @@ BODY.width(window.innerWidth);
 
 const app = new SceneManager(BODY);
 app.constructScene();
-// app.initPerformanceMonitor();
+app.initPerformanceMonitor();
 app.initWindowResizeHandler();
 app.addOrbitControls();
 
@@ -29,7 +29,7 @@ const Views = {
     SS.timeFactor = 20;
     app.addPointLight({x: 200, y: 200, z: 400});
     app.addAmbientLight();
-    app.cameraPosition = {z: 60};
+    app.cameraPosition = {z: 65};
   },
   [STATE_PROFILE]: () => {
     Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU, app);
@@ -53,6 +53,7 @@ const toggleViews = () => {
   // const symbol = '&#x022B7;';
   const symbol = '&#x02592;';
   app.clearScene();
+  app.resetCamera();
   if(currentState == STATE_SS) {
     currentState = STATE_PROFILE;
     TOGGLER.html(`${symbol} view solar system`)
@@ -66,12 +67,12 @@ const toggleViews = () => {
 }
 
 const GameLoop = () => {
-  // app.stats.begin();
+  app.stats.begin();
 
   Renderers[currentState]();
   app.render();
 
-  // app.stats.end();
+  app.stats.end();
   requestAnimationFrame(GameLoop);
 }
 
