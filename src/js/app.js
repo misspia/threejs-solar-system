@@ -14,13 +14,12 @@ BODY.width(window.innerWidth);
 
 const app = new SceneManager(BODY);
 app.constructScene();
-app.initPerformanceMonitor();
+// app.initPerformanceMonitor();
 app.initWindowResizeHandler();
 app.addOrbitControls();
 
 BODY.append(app.renderer.domElement);
-let SS = new SolarSystem(app);
-let Profile = new ProfileRenderer(PROFILE_VIEW_INFO, PROFILE_VIEW_MENU);
+let SS, Profile;
 
 let currentState = STATE_PROFILE;
 const Views = {
@@ -37,7 +36,7 @@ const Views = {
     Profile.init();
     app.addPointLight({x: 200, y: 200, z: 400});
     app.addAmbientLight();
-    app.cameraPosition = {x: 0, y: 0, z: 4}; // RODO: reset roation/ zoom
+    app.cameraPosition = {x: 0, y: 0, z: 4}; // TODO: reset roation/ zoom
   },
 }
 const Renderers = {
@@ -49,29 +48,34 @@ const Renderers = {
   }
 }
 
+
 const toggleViews = () => {
+  // const symbol = '&#x022B7;';
+  const symbol = '&#x02592;';
   app.clearScene();
   if(currentState == STATE_SS) {
     currentState = STATE_PROFILE;
+    TOGGLER.html(`${symbol} view solar system`)
     PROFILE_VIEW.fadeIn();
   } else {
     currentState = STATE_SS;
+    TOGGLER.html(`${symbol}  view planetary profiles`)
     PROFILE_VIEW.fadeOut();
   }
   Views[currentState]();
 }
 
 const GameLoop = () => {
-  app.stats.begin();
+  // app.stats.begin();
 
   Renderers[currentState]();
   app.render();
 
-  app.stats.end();
+  // app.stats.end();
   requestAnimationFrame(GameLoop);
 }
 
-Views[currentState]();
+toggleViews();
 TOGGLER.click(toggleViews);
 
 GameLoop();
