@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import {
   STATE_PROFILE, STATE_SS,
   PROFILE_VIEW, PROFILE_VIEW_INFO, PROFILE_VIEW_MENU, SS_VIEW,
-  TOGGLER, BODY
+  TOGGLER, INSTRUCTIONS, BODY
 } from './constants.js';
 import SceneManager from './sceneManager.js';
 import SolarSystem from './solarSystem/solarSystem.js';
@@ -14,7 +14,6 @@ BODY.width(window.innerWidth);
 
 const app = new SceneManager(BODY);
 app.constructScene();
-app.initPerformanceMonitor();
 app.initWindowResizeHandler();
 app.addOrbitControls();
 
@@ -48,31 +47,35 @@ const Renderers = {
   }
 }
 
-
 const toggleViews = () => {
   // const symbol = '&#x022B7;';
   const symbol = '&#x02592;';
   app.clearScene();
   app.resetCamera();
+
   if(currentState == STATE_SS) {
     currentState = STATE_PROFILE;
-    TOGGLER.html(`${symbol} view solar system`)
+    TOGGLER.html(`${symbol} view solar system`);
+    INSTRUCTIONS.text('');
     PROFILE_VIEW.fadeIn();
+
   } else {
     currentState = STATE_SS;
-    TOGGLER.html(`${symbol}  view planetary profiles`)
+    TOGGLER.html(`${symbol}  view planetary profiles`);
+    INSTRUCTIONS.text('scroll and drag to zoom/ navigate');
     PROFILE_VIEW.fadeOut();
   }
   Views[currentState]();
 }
 
+// app.initPerformanceMonitor();
 const GameLoop = () => {
-  app.stats.begin();
+  // app.stats.begin();
 
   Renderers[currentState]();
   app.render();
 
-  app.stats.end();
+  // app.stats.end();
   requestAnimationFrame(GameLoop);
 }
 
