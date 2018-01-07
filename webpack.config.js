@@ -49,7 +49,13 @@ module.exports = {
 		{
 			test: /\.(glsl|vert|frag)$/,
 			loader: 'webpack-glsl-loader'
-		}
+		},
+		{
+			test: /\.(png|jpg|jpeg|gif|ico)$/,
+				use: [
+					'file-loader',
+				],
+			},
 		]
 	},
 	devtool: 'source-map'
