@@ -69,7 +69,7 @@ const toggleViews = () => {
 }
 
 // app.initPerformanceMonitor();
-const GameLoop = () => {
+export const GameLoop = () => {
   // app.stats.begin();
 
   Renderers[currentState]();
@@ -78,8 +78,7 @@ const GameLoop = () => {
   // app.stats.end();
   requestAnimationFrame(GameLoop);
 }
-
-toggleViews();
-TOGGLER.click(toggleViews);
-
-GameLoop();
+ export const initView = () => {
+   toggleViews();
+   TOGGLER.click(toggleViews);
+ }
