@@ -16,11 +16,6 @@ module.exports = {
 		publicPath: 'dist/'
 	},
 	plugins: [
-	new HtmlWebpackPlugin({
-		title: 'Luminous',
-		filename: TEMPLATE_PATH,
-		inject: 'body'
-	})
 	],
 	module: {
 		rules: [{
