@@ -26,7 +26,7 @@ class Planet extends CelestialBody {
     this.add(this.ring);
   }
   generateRingRocks({color, radiusStart, radiusEnd}) {
-    const rockRadius = (radiusEnd - radiusStart) / 5;
+    const rockRadius = (radiusEnd - radiusStart) / 4.5;
     const numRocksMultiplier = 0.8;
     const numRocks = circumference(radiusEnd) / rockRadius * numRocksMultiplier;
     const angleIncrement = 360 / circumference(radiusEnd);

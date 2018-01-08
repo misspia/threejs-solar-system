@@ -48,7 +48,6 @@ const Renderers = {
 }
 
 const toggleViews = () => {
-  // const symbol = '&#x022B7;';
   const symbol = '&#x02592;';
   app.clearScene();
   app.resetCamera();
@@ -60,9 +59,12 @@ const toggleViews = () => {
     PROFILE_VIEW.fadeIn();
 
   } else {
+    const instructions = `
+      scroll to zoom | drag to rotate | arrows keys to navigate
+    `;
     currentState = STATE_SS;
     TOGGLER.html(`${symbol}  view planetary profiles`);
-    INSTRUCTIONS.text('scroll and drag to zoom/ navigate');
+    INSTRUCTIONS.text(instructions);
     PROFILE_VIEW.fadeOut();
   }
   Views[currentState]();

@@ -130,7 +130,7 @@ class Profile extends Control {
   zoomToFit() {
     const boundingBox = this.calcBoundingBox();
     const d = boundingBox.max.z;
-    this.app.cameraPosition = { z: d * this.app.camera.aspect  +  0.2}
+    this.app.cameraPosition = { z: d * this.app.camera.aspect  +  0.5}
   }
   setFOV() {
     this.app.camera.fov = this.calcFOV();

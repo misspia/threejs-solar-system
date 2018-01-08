@@ -19,9 +19,9 @@ export const animateProfileInfo = ({onReverseComplete,onComplete, play, reverse,
   });
 
   tl
-  .from(container, 0.5, { scaleY: '0'})
-  .from(title, 0.5, { y: -25, autoAlpha: 0})
-  .staggerFrom(details, 0.5, { autoAlpha: 0, x: 40}, 0.1);
+  .from(container, 0.4, { scaleY: '0'})
+  .from(title, 0.3, { y: -25, autoAlpha: 0})
+  .staggerFrom(details, 0.3, { autoAlpha: 0, x: 40}, 0.1);
 
   if(play) return tl.play(0);
   if(reverse) return tl.reverse();
